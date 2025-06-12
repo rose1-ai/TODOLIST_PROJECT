@@ -3,7 +3,7 @@ TODOLIST : Application Web avec Docker
 
 Ce projet consiste en la réalisation d’une application web de gestion de tâches (ToDo List) dans un environnement collaboratif basé sur les pratiques DevOps. Il a été développé dans le cadre d’un travail de groupe visant à mettre en œuvre une séparation claire entre les responsabilités applicatives et l’infrastructure de déploiement.
 
-Lancement rapide
+Lancement rapide    
 
 Pour exécuter le projet localement, il est impératif d’avoir Docker installé sur la machine. Une fois cela fait, il suffit d’ouvrir un terminal dans le répertoire du projet, puis d’exécuter la commande suivante : docker-compose up --build
 
