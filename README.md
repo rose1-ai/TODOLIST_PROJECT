@@ -6,6 +6,7 @@ Ce dossier contient l'ensemble des fichiers nécessaires à la mise en place de 
 
 - \Dockerfile\ : Image personnalisée contenant PHP et Apache pour héberger l'application.
 - \docker-compose.yml\ : Fichier d'orchestration des conteneurs (PHP + MySQL).
+- \`sql/init.sql\` : Script d'initialisation de la base de données.
 
 ## Lancement de l'environnement
 
