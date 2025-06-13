@@ -26,7 +26,7 @@
         <div class="select">
             <select name="todos" class="filter-todo">
                 <option value="all">Tout</option>
-                <option value="completed">Compléte(s)</option>
+                <option value="completed">Complète(s)</option>
                 <option value="incomplete">Incomplète(s)</option>
             </select>
         </div>
