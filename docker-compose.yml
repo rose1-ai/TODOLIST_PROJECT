@@ -1,20 +1,50 @@
 version: '3.8'
+
 services:
   web:
-    build: ./docker/apache-php
+    image: php:8.2-apache
+    container_name: todo-web
     ports:
       - "8080:80"
     volumes:
-      - ./app:/var/www/html
+      - ./app:/var/www/html 
+    environment:
+      - APACHE_DOCUMENT_ROOT=/var/www/html
     depends_on:
       - db
+    command: >
+      bash -c "docker-php-ext-install mysqli pdo pdo_mysql
+      && a2enmod rewrite
+      && chown -R www-data:www-data /var/www/html
+      && apache2-foreground"
 
   db:
-    image: mysql:5.7
+    image: mysql:8.0
+    container_name: todo-db
+    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: tododb
-      MYSQL_USER: todo
-      MYSQL_PASSWORD: todopass
+      MYSQL_DATABASE: tododb       
+      MYSQL_USER: todo            
+      MYSQL_PASSWORD: todopass    
     volumes:
-      - ./sql:/docker-entrypoint-initdb.d
+      - db_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "3307:3306"
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: todo-pma
+    restart: always
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: root
+      depends_on:
+      - db
+
+volumes:
+  db_data:
